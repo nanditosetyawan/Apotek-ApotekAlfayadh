@@ -1,0 +1,140 @@
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#f3f2ee;
+    font-family:Arial, sans-serif;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+    max-width:380px;
+    margin:auto;
+    padding:30px 15px;
+}
+
+/* ===== PROFILE ===== */
+.profile-box{
+    display:flex;
+    align-items:center;
+    gap:30px;
+
+    background:#fff;
+    padding:20px;
+    min-height:170px;
+
+    margin-bottom:30px;
+
+    border-radius:12px; /* 🔥 sudut lengkung */
+}
+
+.profile-img{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    object-fit:cover;
+    flex-shrink:0;
+}
+
+.profile-text h3{
+    font-size:24px;
+    margin-bottom:6px;
+}
+
+.profile-text p{
+    font-size:15px;
+    color:#666;
+    margin-bottom:6px;
+}
+
+#clock{
+    font-size:14px;
+    color:#444;
+}
+
+/* ===== MENU CARD ===== */
+.menu-card{
+    background:#ddd;
+    min-height:150px;
+
+    position:relative;
+    padding:20px;
+
+    margin-bottom:15px;
+
+    border-radius:12px; /* 🔥 sudut lengkung */
+}
+
+/* WRAPPER ICON + TEXT */
+.menu-content{
+    display:flex;
+    align-items:flex-end;
+    gap:17px;
+}
+
+/* ICON */
+.icon-box{
+    display:flex;
+    align-items:flex-end;
+    flex-shrink:0;
+}
+
+.icon-box img{
+    padding-top:10px;
+    width:80px;
+    height:80px;
+    object-fit:contain;
+}
+
+/* TEXT */
+.menu-text{
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    margin-bottom:15px;
+}
+
+.menu-text h3{
+    padding-top:10px;
+    font-size:20px;
+    margin-bottom:5px;
+    color:#111;
+    line-height:1.2;
+}
+
+.menu-text p{
+    font-size:14px;
+    color:#444;
+    max-width:190px;
+    line-height:1.3;
+}
+
+/* ===== BUTTON ===== */
+.btn{
+    position:absolute;
+    right:20px;
+    bottom:20px;
+
+    width:80px;           /* 🔥 PANJANG SAMA */
+    text-align:center;
+
+    padding:8px 0;
+    color:#fff;
+    text-decoration:none;
+    font-size:14px;
+
+    border-radius:6px;     /* 🔥 tombol lengkung */
+}
+
+/* warna tombol */
+.btn-dark{
+    background:#2b2323;
+}
+
+.btn-red{
+    background:#c62828;
+}

@@ -1,0 +1,133 @@
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#f3f2ee;
+    font-family:Arial, sans-serif;
+}
+
+/* CONTAINER */
+.container{
+    max-width:380px;
+    margin:auto;
+    padding:30px 15px;
+}
+
+/* ===== PROFILE ===== */
+.profile-box{
+    display:flex;
+    align-items:center;
+    gap:25px;
+
+    background:#fff;
+    padding:20px;
+    min-height:150px;
+
+    margin-bottom:30px;
+
+    border-radius:12px;
+}
+
+.profile-img{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.profile-text h3{
+    font-size:22px;
+    margin-bottom:5px;
+}
+
+.profile-text p{
+    font-size:14px;
+    color:#666;
+    margin-bottom:5px;
+}
+
+#clock{
+    font-size:13px;
+    color:#444;
+}
+
+/* ===== MENU CARD ===== */
+.menu-card{
+    background:#ddd;
+    min-height:140px;
+
+    position:relative;
+    padding:20px;
+
+    margin-bottom:15px;
+
+    border-radius:12px;
+}
+
+/* CONTENT WRAPPER */
+.menu-content{
+    display:flex;
+    align-items:flex-end;
+    gap:15px;
+}
+
+/* ICON */
+.icon-box{
+    display:flex;
+    align-items:flex-end;
+}
+
+.icon-box img{
+    width:70px;
+    height:70px;
+    object-fit:contain;
+}
+
+/* TEXT */
+.menu-text{
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    margin-bottom:10px;
+}
+
+.menu-text h3{
+    font-size:18px;
+    margin-bottom:5px;
+    color:#111;
+}
+
+.menu-text p{
+    font-size:13px;
+    color:#444;
+}
+
+/* ===== BUTTON ===== */
+.btn{
+    position:absolute;
+    right:20px;
+    bottom:20px;
+
+    width:80px;
+    text-align:center;
+
+    padding:8px 0;
+    color:#fff;
+    text-decoration:none;
+    font-size:14px;
+
+    border-radius:6px;
+}
+
+/* WARNA */
+.btn-dark{
+    background:#2b2323;
+}
+
+.btn-red{
+    background:#c62828;
+}

@@ -1,0 +1,107 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#f3f2ee;
+    font-family:Arial,sans-serif;
+}
+
+.container{
+    max-width:380px;
+    margin:auto;
+    padding:15px;
+}
+
+/* TOP */
+.top-bar{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:50px;
+}
+
+.back-btn{
+    font-size:30px;
+    text-decoration:none;
+    color:#222;
+}
+
+.top-text{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    text-align: right;
+    font-weight: bold;
+    align-items:flex-end;
+}
+
+.line1, .line2{
+    background:#ffffff;
+    padding:4px 10px;
+    border-radius:5px;
+    font-size:14px;
+    font-weight:bold;
+    text-align:right;
+    display:inline-block;
+}
+
+.line2{
+    font-family: monospace;
+}
+
+/* PREVIEW */
+.preview-wrapper{
+    background:#ffffff;
+    padding:5px;
+    border-radius:15px;
+    margin-bottom:25px;
+}
+
+.preview-paper{
+    background:#fff;
+    min-height:470px;
+    max-width:350px;
+    border-radius:10px;
+
+    padding:20px; /* 🔥 FIX biar tidak kosong aneh */
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    text-align:center;
+}
+
+.preview-paper h2{
+    font-size:23px;
+}
+
+/* 🔥 FIX UTAMA DI SINI */
+.preview-header{
+    width:100%;
+    height:20px;
+
+    background:#ffffff; /* 🔥 ganti solid, bukan transparan */
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:12px;
+    font-weight:600;
+
+    border-radius:8px 8px 0 0;
+    margin-bottom:20px; /* 🔥 kecilkan jarak */
+}
+
+/* BUTTON */
+.btn-kirim{
+    width:100%;
+    height:45px;
+    border:none;
+    background:#ecee9b;
+    border-radius:10px;
+    font-size:16px;
+}

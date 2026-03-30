@@ -1,0 +1,104 @@
+/* ===== RESET ===== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#f3f2ee;
+    font-family:Arial,sans-serif;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+    max-width:380px;
+    margin:auto;
+    padding:15px;
+}
+
+/* ===== TOP BAR KHUSUS ===== */
+.top-bar{
+    display:flex;
+    justify-content:flex-end; /* ⬅️ paksa ke kanan */
+    margin-bottom:50px;
+}
+
+/* TEXT (tanggal + jam) */
+.top-text{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end; /* ⬅️ rata kanan */
+    gap:8px;
+}
+
+/* tanggal */
+.line1{
+    background:#ffffff;
+    padding:5px 12px;
+    border-radius:6px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+/* jam */
+.line2{
+    background:#ffffff;
+    padding:5px 12px;
+    border-radius:6px;
+    font-size:14px;
+    font-weight:bold;
+    font-family:monospace;
+}
+
+/* ===== PREVIEW ===== */
+.preview-wrapper{
+    background:#ddd;
+    padding:5px;
+    border-radius:15px;
+    margin-bottom:25px;
+}
+
+.preview-paper{
+    background:#fff;
+    min-height:470px;
+    max-width:350px;
+    border-radius:10px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+
+    text-align:center;
+}
+
+/* header abu */
+.preview-header{
+    width:100%;
+    height:20px;
+    background:rgba(200,200,200,0.4);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:12px;
+    font-weight:600;
+    border-radius:8px 8px 0 0;
+    margin-bottom:60px;
+}
+
+/* judul */
+.preview-paper h2{
+    font-size:22px;
+    margin-bottom:20px;
+}
+
+/* ===== BUTTON ===== */
+.btn-kirim{
+    width:100%;
+    height:45px;
+    border:none;
+    background:#ecee9b;
+    border-radius:10px;
+    font-size:16px;
+}
