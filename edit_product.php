@@ -7,8 +7,34 @@ if (!isset($_SESSION['login']) || $_SESSION['jabatan'] != 'managergudang') {
     exit;
 }
 
-$id = $_GET['id'] ?? 0;
+/* ===== AMBIL ID ===== */
+$id = $_POST['id'] ?? $_GET['id'] ?? 0;
 
+/* ===== HAPUS (WAJIB DI ATAS) ===== */
+if(isset($_POST['hapus'])){
+
+    $data_hapus = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM obat WHERE id_obat='$id'"));
+
+    if($data_hapus){
+
+        $stok_lama = (int)$data_hapus['stok'];
+
+        mysqli_query($conn,"INSERT INTO log_stok 
+        (id_obat, jenis, jumlah, stok_sebelum, stok_sesudah, tanggal)
+        VALUES ('$id','kurang','$stok_lama','$stok_lama','0',NOW())");
+
+        /* 🔥 HAPUS LOG DULU */
+        mysqli_query($conn,"DELETE FROM log_stok WHERE id_obat='$id'");
+
+        /* 🔥 BARU HAPUS OBAT */
+        mysqli_query($conn,"DELETE FROM obat WHERE id_obat='$id'");
+    }
+
+    header("Location: edit_obat.php");
+    exit;
+}
+
+/* ===== AMBIL DATA ===== */
 $data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM obat WHERE id_obat='$id'"));
 
 if(!$data){
@@ -19,7 +45,7 @@ if(!$data){
 if(isset($_POST['simpan'])){
     $nama = $_POST['nama'];
     $harga = $_POST['harga'];
-    $stok = $_POST['stok'];
+    $stok = (int)$_POST['stok'];
     $deskripsi = $_POST['deskripsi'];
 
     $gambar = $data['gambar'];
@@ -30,6 +56,18 @@ if(isset($_POST['simpan'])){
         $gambar = "img/obat/".$nama_file;
     }
 
+    $stok_lama = (int)$data['stok'];
+
+    /* ===== TENTUKAN JENIS ===== */
+    if($stok > $stok_lama){
+        $jenis = "tambah";
+    }else if($stok < $stok_lama){
+        $jenis = "kurang";
+    }else{
+        $jenis = "tetap";
+    }
+
+    /* ===== UPDATE ===== */
     mysqli_query($conn,"UPDATE obat SET 
         nama='$nama',
         harga='$harga',
@@ -39,13 +77,15 @@ if(isset($_POST['simpan'])){
         WHERE id_obat='$id'
     ");
 
-    header("Location: edit_obat.php");
-    exit;
-}
+    /* ===== LOG ===== */
+    if($stok != $stok_lama){
+        $jumlah = abs($stok - $stok_lama);
 
-/* ===== HAPUS ===== */
-if(isset($_POST['hapus'])){
-    mysqli_query($conn,"DELETE FROM obat WHERE id_obat='$id'");
+        mysqli_query($conn,"INSERT INTO log_stok 
+        (id_obat, jenis, jumlah, stok_sebelum, stok_sesudah, tanggal)
+        VALUES ('$id','$jenis','$jumlah','$stok_lama','$stok',NOW())");
+    }
+
     header("Location: edit_obat.php");
     exit;
 }
@@ -74,18 +114,21 @@ if(isset($_POST['hapus'])){
 </div>
 
 <form method="POST" enctype="multipart/form-data">
+
+<!-- FIX ID -->
+<input type="hidden" name="id" value="<?= $id ?>">
+
 <br>
+
 <!-- HEADER -->
 <div class="header-box">
 
-    <!-- GAMBAR -->
     <div class="img-box" onclick="document.getElementById('file').click()">
         <img id="preview" src="<?= $data['gambar'] ?>" class="img">
     </div>
 
     <input type="file" name="gambar" id="file" hidden onchange="previewImage(event)">
 
-    <!-- INPUT -->
     <div class="info">
         <input type="text" name="nama" value="<?= $data['nama'] ?>" required>
         <input type="number" name="harga" value="<?= $data['harga'] ?>" required>
@@ -94,36 +137,39 @@ if(isset($_POST['hapus'])){
 
 </div>
 
-<!-- DESKRIPSI -->
-<textarea name="deskripsi"><?= $data['deskripsi'] ?></textarea>
+<textarea name="deskripsi"><?= $data['deskripsi'] ?? '' ?></textarea>
+
 <br><br>
+
 <!-- BUTTON -->
 <div class="btn-group">
     <button type="button" class="btn-hapus" onclick="openHapus()">HAPUS</button>
     <button type="button" class="btn-simpan" onclick="openSimpan()">SIMPAN</button>
 </div>
 
-<!-- CONFIRM HAPUS -->
+<!-- POPUP HAPUS -->
 <div id="popupHapus" class="popup">
-    <div class="popup-box"> <br>
+    <div class="popup-box">
         <img src="<?= $data['gambar'] ?>">
         <p>Yakin hapus?</p>
-       <div class="popup-btn">
-    <button name="hapus" class="popup-hapus">HAPUS</button>
-    <button type="button" onclick="closePopup()" class="popup-batal">BATAL</button>
-</div>
+
+        <div class="popup-btn">
+            <button type="submit" name="hapus" class="popup-hapus">HAPUS</button>
+            <button type="button" onclick="closePopup()" class="popup-batal">BATAL</button>
+        </div>
     </div>
 </div>
 
-<!-- CONFIRM SIMPAN -->
+<!-- POPUP SIMPAN -->
 <div id="popupSimpan" class="popup">
-    <div class="popup-box"> <br>
+    <div class="popup-box">
         <img src="<?= $data['gambar'] ?>">
         <p>Yakin simpan perubahan?</p>
-     <div class="popup-btn">
-    <button name="simpan" class="popup-simpan">SIMPAN</button>
-    <button type="button" onclick="closePopup()" class="popup-batal">BATAL</button>
-</div>
+
+        <div class="popup-btn">
+            <button type="submit" name="simpan" class="popup-simpan">SIMPAN</button>
+            <button type="button" onclick="closePopup()" class="popup-batal">BATAL</button>
+        </div>
     </div>
 </div>
 
@@ -149,7 +195,6 @@ function updateTime(){
 setInterval(updateTime,1000);
 updateTime();
 
-/* PREVIEW GAMBAR */
 function previewImage(event){
     const reader = new FileReader();
     reader.onload = function(){
@@ -158,7 +203,6 @@ function previewImage(event){
     reader.readAsDataURL(event.target.files[0]);
 }
 
-/* POPUP */
 function openHapus(){
     document.getElementById("popupHapus").style.display="flex";
 }

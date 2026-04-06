@@ -7,7 +7,7 @@ if (!isset($_SESSION['login']) || $_SESSION['jabatan'] != 'managergudang') {
     exit;
 }
 
-/* SIMPAN DATA */
+/* ===== TAMBAH ===== */
 if(isset($_POST['tambah'])){
 
     $nama   = $_POST['nama'];
@@ -15,22 +15,26 @@ if(isset($_POST['tambah'])){
     $stok   = $_POST['stok'];
     $deskripsi = $_POST['deskripsi'];
 
-    /* ===== HANDLE GAMBAR ===== */
+    /* ===== GAMBAR ===== */
     $gambar = "img/obat/default.png";
 
     if(isset($_FILES['gambar']) && $_FILES['gambar']['name'] != ""){
-
         $nama_file = time()."_".$_FILES['gambar']['name'];
-        $tmp = $_FILES['gambar']['tmp_name'];
-
-        move_uploaded_file($tmp, "img/obat/".$nama_file);
-
+        move_uploaded_file($_FILES['gambar']['tmp_name'], "img/obat/".$nama_file);
         $gambar = "img/obat/".$nama_file;
     }
 
-    /* ===== INSERT ===== */
+    /* ===== INSERT OBAT ===== */
     mysqli_query($conn,"INSERT INTO obat (nama,harga,stok,deskripsi,gambar) 
-        VALUES ('$nama','$harga','$stok','$deskripsi','$gambar')");
+    VALUES ('$nama','$harga','$stok','$deskripsi','$gambar')");
+
+    /* ===== AMBIL ID BARU ===== */
+    $id_baru = mysqli_insert_id($conn);
+
+    /* ===== LOG MASUK ===== */
+    mysqli_query($conn,"INSERT INTO log_stok 
+    (id_obat, jumlah, stok_sebelum, stok_sesudah, tanggal)
+    VALUES ('$id_baru','$stok','0','$stok',NOW())");
 
     header("Location: daftar_obat.php");
     exit;
@@ -61,13 +65,9 @@ if(isset($_POST['tambah'])){
 
 <form method="POST" enctype="multipart/form-data">
 
-<!-- HEADER -->
+<!-- INPUT -->
 <div class="header-box">
 
-    <!-- GAMBAR PREVIEW (sementara default dulu) -->
- 
-
-    <!-- INPUT -->
     <div class="info">
         <input type="file" name="gambar">
         <input type="text" name="nama" placeholder="Nama obat" required>
@@ -77,10 +77,8 @@ if(isset($_POST['tambah'])){
 
 </div>
 
-<!-- DESKRIPSI -->
 <textarea name="deskripsi" placeholder="Deskripsi obat..."></textarea>
 
-<!-- BUTTON -->
 <button name="tambah" class="btn-tambah">TAMBAH</button>
 
 </form>
@@ -102,7 +100,6 @@ function updateTime(){
     document.getElementById("clock").innerText =
         now.toLocaleTimeString();
 }
-
 setInterval(updateTime,1000);
 updateTime();
 </script>
