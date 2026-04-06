@@ -1,8 +1,0 @@
-LAPORAN OBAT MASUK
-Bulan: April 2026
---------------------------
-Total transaksi: 0
-Total masuk: 0
-
-DETAIL:
-id_obat | jumlah | sebelum | sesudah
