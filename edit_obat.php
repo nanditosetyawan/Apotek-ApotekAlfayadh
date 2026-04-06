@@ -13,18 +13,25 @@ $data = mysqli_query($conn,"SELECT * FROM obat ORDER BY nama ASC");
 </head>
 
 <body>
-
+<br>
 <div class="container">
 
 <div class="top-bar">
-    <a href="mengelola_obat.php" class="back">←</a>
 
+    <!-- LEFT SIDE -->
+    <div class="left-group">
+        <a href="mengelola_obat.php" class="back">←</a>
+   
+    </div>
+
+    <!-- RIGHT SIDE -->
     <div class="top-text">
         <div id="dayDate" class="bg"></div>
         <div id="clock" class="bg"></div>
     </div>
-</div>
 
+</div>
+<br>
 <div class="search-box">
     <input type="text" id="search" placeholder="Cari obat..." onkeyup="searchObat()">
 </div>
@@ -53,10 +60,25 @@ $data = mysqli_query($conn,"SELECT * FROM obat ORDER BY nama ASC");
 <script>
 function updateTime(){
     const now = new Date();
+
+    const hari = now.toLocaleDateString('id-ID', { weekday: 'long' });
+
+    const tanggal = now.getDate();
+
+    const bulanList = [
+        "Januari","Februari","Maret","April","Mei","Juni",
+        "Juli","Agustus","September","Oktober","November","Desember"
+    ];
+
+    const bulan = bulanList[now.getMonth()];
+    const tahun = now.getFullYear();
+
+    const jam = now.toLocaleTimeString();
+
     document.getElementById("dayDate").innerText =
-        now.toLocaleDateString('id-ID');
-    document.getElementById("clock").innerText =
-        now.toLocaleTimeString();
+        `${hari}, ${tanggal} ${bulan} ${tahun}`;
+
+    document.getElementById("clock").innerText = jam;
 }
 setInterval(updateTime,1000);
 updateTime();
