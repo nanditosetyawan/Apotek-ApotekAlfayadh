@@ -51,7 +51,7 @@ $data = mysqli_query($conn,"SELECT * FROM obat WHERE stok <= 5 ORDER BY nama ASC
     <div class="info">
         <b><?= $o['nama'] ?></b>
         <small>Rp <?= number_format($o['harga'],0,',','.') ?></small>
-
+<br>
         <?php if($o['stok'] <= 5 && $o['stok'] > 0): ?>
             <span class="tipis">stok tipis</span>
         <?php endif; ?>
