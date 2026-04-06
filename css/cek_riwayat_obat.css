@@ -1,0 +1,27 @@
+body{
+    background:#f3f2ee;
+    font-family:monospace;
+}
+
+.container{
+    max-width:420px;
+    margin:auto;
+    padding:15px;
+}
+
+pre{
+    background:#fff;
+    padding:15px;
+    border-radius:10px;
+    white-space:pre-wrap;
+}
+
+.btn-download{
+    display:block;
+    margin-top:15px;
+    text-align:center;
+    background:#ecee9b;
+    padding:12px;
+    border-radius:10px;
+    text-decoration:none;
+}

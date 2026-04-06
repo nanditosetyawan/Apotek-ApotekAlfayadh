@@ -67,7 +67,7 @@ if ($_SESSION['jabatan'] != 'managergudang') {
             </div>
         </div>
 
-        <a href="#" class="btn btn-dark">Lihat</a>
+        <a href="riwayat_obat.php" class="btn btn-dark">Lihat</a>
     </div>
 
     <!-- MENU 3 -->
