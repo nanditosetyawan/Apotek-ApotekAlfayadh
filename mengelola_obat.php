@@ -49,7 +49,7 @@ if (!isset($_SESSION['login']) || $_SESSION['jabatan'] != 'managergudang') {
     </a>
 
 </div>
-
+<br>
 <!-- BUTTON -->
 <a href="tambah_obat.php" class="btn">TAMBAH</a>
 
