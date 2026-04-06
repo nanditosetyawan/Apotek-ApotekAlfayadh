@@ -37,7 +37,7 @@ body{
 }
 
 .bg{
-    background:#eaeaea;
+    background:#ffffff;
     padding:8px 12px;
     border-radius:8px;
     font-size:14px;
@@ -45,10 +45,22 @@ body{
 
 /* MENU */
 .menu-wrapper{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
     background:#fff;
     padding:16px;
     border-radius:14px;
-    margin-top:20px;
+    margin-top:17px;
+     width:70%;        /* lebar */
+    max-width:320px;  /* batas biar tidak kepanjangan di HP besar */
+
+  margin-left:auto;
+    margin-right:auto;
+
+    min-height:500px; /* tinggi minimum */
+
 }
 
 .menu-box{
@@ -58,7 +70,9 @@ body{
     justify-content:center;
     background:#ddd;
     border-radius:12px;
-    height:120px;
+    height:160px;
+    width: 190px;
+     margin-top:14px;
     margin-bottom:14px;
     text-decoration:none;
     color:#000;
@@ -66,10 +80,11 @@ body{
 }
 
 .menu-img{
-    width:45px;
-    height:45px;
+    width:100px;
+    height:100px;
+    border-radius: 12px;
     object-fit:contain;
-    margin-bottom:8px;
+    margin-bottom:15px;
 }
 
 /* BUTTON */
@@ -83,6 +98,7 @@ body{
     border-radius:12px;
     text-decoration:none;
     font-size:16px;
+    margin-bottom: 20px;
 }
 
 /* SAFE */

@@ -9,13 +9,28 @@ if (!isset($_SESSION['login']) || $_SESSION['jabatan'] != 'managergudang') {
 
 /* SIMPAN DATA */
 if(isset($_POST['tambah'])){
+
     $nama   = $_POST['nama'];
     $harga  = $_POST['harga'];
     $stok   = $_POST['stok'];
     $deskripsi = $_POST['deskripsi'];
 
-    mysqli_query($conn,"INSERT INTO obat (nama,harga,stok,deskripsi) 
-        VALUES ('$nama','$harga','$stok','$deskripsi')");
+    /* ===== HANDLE GAMBAR ===== */
+    $gambar = "img/obat/default.png";
+
+    if(isset($_FILES['gambar']) && $_FILES['gambar']['name'] != ""){
+
+        $nama_file = time()."_".$_FILES['gambar']['name'];
+        $tmp = $_FILES['gambar']['tmp_name'];
+
+        move_uploaded_file($tmp, "img/obat/".$nama_file);
+
+        $gambar = "img/obat/".$nama_file;
+    }
+
+    /* ===== INSERT ===== */
+    mysqli_query($conn,"INSERT INTO obat (nama,harga,stok,deskripsi,gambar) 
+        VALUES ('$nama','$harga','$stok','$deskripsi','$gambar')");
 
     header("Location: daftar_obat.php");
     exit;
@@ -44,16 +59,17 @@ if(isset($_POST['tambah'])){
     </div>
 </div>
 
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
 
 <!-- HEADER -->
 <div class="header-box">
 
-    <!-- GAMBAR -->
-    <img src="img/default.png" class="img">
+    <!-- GAMBAR PREVIEW (sementara default dulu) -->
+ 
 
     <!-- INPUT -->
     <div class="info">
+        <input type="file" name="gambar">
         <input type="text" name="nama" placeholder="Nama obat" required>
         <input type="number" name="harga" placeholder="Harga" required>
         <input type="number" name="stok" placeholder="Stok" required>

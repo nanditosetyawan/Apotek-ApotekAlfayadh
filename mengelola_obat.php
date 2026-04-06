@@ -17,7 +17,7 @@ if (!isset($_SESSION['login']) || $_SESSION['jabatan'] != 'managergudang') {
 </head>
 
 <body>
-
+<br>
 <div class="container">
 
 <!-- TOP -->
@@ -29,22 +29,22 @@ if (!isset($_SESSION['login']) || $_SESSION['jabatan'] != 'managergudang') {
         <div id="clock" class="bg"></div>
     </div>
 </div>
-
+<br>
 <!-- MENU -->
 <div class="menu-wrapper">
 
     <a href="daftar_obat.php" class="menu-box">
-        <img src="img/default.png" class="menu-img">
+        <img src="img/list.png" class="menu-img">
         <span>DAFTAR</span>
     </a>
 
     <a href="edit_obat.php" class="menu-box">
-        <img src="img/default.png" class="menu-img">
+        <img src="img/edit.png" class="menu-img">
         <span>EDIT</span>
     </a>
 
     <a href="habis.php" class="menu-box">
-        <img src="img/default.png" class="menu-img">
+        <img src="img/habis.png" class="menu-img">
         <span>HABIS</span>
     </a>
 

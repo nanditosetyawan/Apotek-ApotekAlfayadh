@@ -45,7 +45,7 @@ $data = mysqli_query($conn,"SELECT * FROM obat WHERE stok <= 5 ORDER BY nama ASC
 <div class="item" data-nama="<?= strtolower($o['nama']) ?>">
 
     <!-- GAMBAR -->
-    <img src="img/default.png" class="img">
+        <img src="<?= !empty($o['gambar']) ? $o['gambar'] : 'img/obat/default.png' ?>" class="img">
 
     <!-- INFO -->
     <div class="info">

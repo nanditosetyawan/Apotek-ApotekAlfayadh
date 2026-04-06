@@ -94,7 +94,7 @@ $obat = mysqli_query($conn, "SELECT * FROM obat ORDER BY nama ASC");
         data-nama="<?= strtolower($o['nama']); ?>"
         data-harga="<?= $o['harga']; ?>">
 
-        <div class="img"></div>
+        <img src="<?= !empty($o['gambar']) ? $o['gambar'] : 'img/obat/default.png' ?>" class="img">
 
         <div class="info">
             <div class="nama"><?= $o['nama']; ?></div>

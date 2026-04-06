@@ -34,7 +34,7 @@ $data = mysqli_query($conn,"SELECT * FROM obat ORDER BY nama ASC");
 <?php while($o=mysqli_fetch_assoc($data)): ?>
 <div class="item" data-nama="<?= strtolower($o['nama']) ?>">
 
-    <img src="img/default.png" class="img">
+     <img src="<?= !empty($o['gambar']) ? $o['gambar'] : 'img/obat/default.png' ?>" class="img">
 
     <div class="info">
         <b><?= $o['nama'] ?></b>

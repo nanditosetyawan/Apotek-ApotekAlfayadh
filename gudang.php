@@ -41,7 +41,7 @@ if ($_SESSION['jabatan'] != 'managergudang') {
 
         <div class="menu-content">
             <div class="icon-box">
-                <img src="img/obat.png" alt="">
+                <img src="img/mengelola_obat.png" alt="">
             </div>
 
             <div class="menu-text">
