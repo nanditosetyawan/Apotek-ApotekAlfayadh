@@ -197,7 +197,7 @@ function applyFilter(){
     const start = document.getElementById("startDate").value;
     const end   = document.getElementById("endDate").value;
 
-    let url = "laporan_obat.php?"; // ⬅️ perbaiki di sini
+    let url = "laporan_obat.php?"; 
 
     if(start) url += "start=" + start + "&";
     if(end)   url += "end=" + end;
@@ -207,7 +207,7 @@ function applyFilter(){
 function resetFilter(){
     document.getElementById("startDate").value="";
     document.getElementById("endDate").value="";
-    window.location.href = "laporan_obat.php"; // ⬅️ perbaiki di sini
+    window.location.href = "laporan_obat.php"; 
 }
 
 /* ===== AUTO ISI INPUT ===== */
