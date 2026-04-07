@@ -77,7 +77,7 @@ $tahun = $data['tahun'];
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cek Riwayat Obat</title>
-<link rel="stylesheet" href="css/cek_riwayat_obat.css">
+<link rel="stylesheet" href="css/cek_riwayat_obat_cabang.css">
 </head>
 
 <body>
@@ -89,7 +89,7 @@ $tahun = $data['tahun'];
 <div class="top-bar">
 
     <!-- BACK -->
-    <a href="riwayat_obat.php" class="back-btn">←</a>
+    <a href="laporan_obat.php" class="back-btn">←</a>
 
     <!-- WAKTU -->
     <div class="top-text">
@@ -154,9 +154,9 @@ $tahun = $data['tahun'];
 
 <!-- BUTTON -->
 <div style="margin-top:20px;">
-    <button onclick="window.history.back()" class="btn-kirim">
-        CLOSE
-    </button>
+    <a href="<?= $file ?>" download class="btn-kirim" style="display:flex; justify-content:center; align-items:center; text-decoration:none; color:#000;">
+        DOWNLOAD
+    </a>
 </div>
 
 </div>
