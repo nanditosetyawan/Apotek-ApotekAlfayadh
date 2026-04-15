@@ -39,12 +39,15 @@ if(isset($_POST['kirim'])){
             d.id_detail,
             d.id_transaksi,
             d.id_obat,
+            o.nama,
             d.jumlah,
             d.harga,
             d.subtotal
         FROM detail_transaksi d
-        JOIN transaksi t 
-            ON d.id_transaksi = t.id_transaksi
+JOIN transaksi t 
+    ON d.id_transaksi = t.id_transaksi
+JOIN obat o
+    ON d.id_obat = o.id_obat
         WHERE MONTH(t.tanggal)='$bulan'
         AND YEAR(t.tanggal)='$tahun'
     ");
@@ -75,10 +78,10 @@ if(isset($_POST['kirim'])){
     $isi .= "Total pemasukan : $total_pemasukan\n\n";
 
     $isi .= "DETAIL:\n";
-    $isi .= "id_detail | id_obat | jumlah | harga | subtotal\n";
+    $isi .= "id_obat | nama | jumlah | harga | subtotal\n";
 
     foreach($data_all as $d){
-        $isi .= "{$d['id_detail']} | {$d['id_obat']} | {$d['jumlah']} | {$d['harga']} | {$d['subtotal']}\n";
+        $isi .= "{$d['id_obat']} | {$d['nama']} | {$d['jumlah']} | {$d['harga']} | {$d['subtotal']}\n";
     }
 
     /* ===== SIMPAN FILE ===== */

@@ -1,0 +1,9 @@
+LAPORAN BULAN APRIL
+------------------------
+Total transaksi : 1
+Total pemasukan : 139000
+
+DETAIL:
+id_obat | nama | jumlah | harga | subtotal
+18 | Amlodipine 10mg | 10 | 13000.00 | 130000.00
+25 | Allopurinol 100mg | 1 | 9000.00 | 9000.00

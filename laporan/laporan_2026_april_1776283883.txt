@@ -1,9 +1,0 @@
-LAPORAN BULAN APRIL
-------------------------
-Total transaksi : 1
-Total pemasukan : 139000
-
-DETAIL:
-id_detail | id_obat | jumlah | harga | subtotal
-10 | 18 | 10 | 13000.00 | 130000.00
-11 | 25 | 1 | 9000.00 | 9000.00
