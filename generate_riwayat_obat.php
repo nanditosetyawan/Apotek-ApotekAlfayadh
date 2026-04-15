@@ -6,11 +6,12 @@ include "koneksi.php";
 $bulan = date("m");
 $tahun = date("Y");
 
-/* ===== AMBIL DATA LOG ===== */
 $query = mysqli_query($conn,"
-SELECT * FROM log_stok
-WHERE MONTH(tanggal)='$bulan'
-AND YEAR(tanggal)='$tahun'
+SELECT log_stok.*, obat.nama, obat.harga 
+FROM log_stok
+LEFT JOIN obat ON log_stok.id_obat = obat.id_obat
+WHERE MONTH(log_stok.tanggal) = $bulan
+AND YEAR(log_stok.tanggal) = $tahun
 ");
 
 /* ===== HITUNG TOTAL ===== */
@@ -19,11 +20,13 @@ $jumlah = 0;
 $data_all = [];
 
 while($d = mysqli_fetch_assoc($query)){
-    $total += $d['jumlah'];
-    $jumlah++;
     $data_all[] = $d;
-}
+    $jumlah++;
 
+    if($d['jumlah'] > 0){
+        $total += $d['jumlah'];
+    }
+}
 /* ===== FORMAT NAMA BULAN ===== */
 $bulan_nama = [
 "01"=>"Januari","02"=>"Februari","03"=>"Maret","04"=>"April",
@@ -55,10 +58,12 @@ $isi .= "Total transaksi: $jumlah\n";
 $isi .= "Total masuk: $total\n\n";
 
 $isi .= "DETAIL:\n";
-$isi .= "id_obat | jumlah | sebelum | sesudah\n";
+$isi .= "id | nama | jumlah | harga | subtotal\n";
 
 foreach($data_all as $d){
-    $isi .= "{$d['id_obat']} | {$d['jumlah']} | {$d['stok_sebelum']} | {$d['stok_sesudah']}\n";
+    $subtotal = $d['jumlah'] * $d['harga'];
+
+    $isi .= "{$d['id_obat']} | {$d['nama']} | {$d['jumlah']} | {$d['harga']} | {$subtotal}\n";
 }
 
 /* ===== BUAT FOLDER JIKA BELUM ADA ===== */

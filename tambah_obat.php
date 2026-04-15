@@ -33,8 +33,8 @@ if(isset($_POST['tambah'])){
 
     /* ===== LOG MASUK ===== */
     mysqli_query($conn,"INSERT INTO log_stok 
-    (id_obat, jumlah, stok_sebelum, stok_sesudah, tanggal)
-    VALUES ('$id_baru','$stok','0','$stok',NOW())");
+(id_obat, jenis, jumlah, stok_sebelum, stok_sesudah, tanggal)
+VALUES ('$id_baru','tambah','$stok','0','$stok',NOW())");
 
     header("Location: daftar_obat.php");
     exit;

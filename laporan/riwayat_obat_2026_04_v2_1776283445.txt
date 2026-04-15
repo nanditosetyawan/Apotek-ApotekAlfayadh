@@ -1,0 +1,12 @@
+LAPORAN OBAT MASUK
+Bulan: April 2026
+Versi: v2
+--------------------------
+Total transaksi: 3
+Total masuk: 919
+
+DETAIL:
+id | nama | jumlah | harga | subtotal
+25 | Allopurinol 100mg | 14 | 9000 | 126000
+53 | Bodrex | 5 | 5000 | 25000
+18 | Amlodipine 10mg | 900 | 13000 | 11700000

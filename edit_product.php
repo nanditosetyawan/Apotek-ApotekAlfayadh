@@ -79,13 +79,12 @@ if(isset($_POST['simpan'])){
 
     /* ===== LOG ===== */
     if($stok != $stok_lama){
-        $jumlah = abs($stok - $stok_lama);
+    $jumlah = $stok - $stok_lama;
 
-        mysqli_query($conn,"INSERT INTO log_stok 
-        (id_obat, jenis, jumlah, stok_sebelum, stok_sesudah, tanggal)
-        VALUES ('$id','$jenis','$jumlah','$stok_lama','$stok',NOW())");
-    }
-
+    mysqli_query($conn,"INSERT INTO log_stok 
+    (id_obat, jenis, jumlah, stok_sebelum, stok_sesudah, tanggal)
+    VALUES ('$id','$jenis','$jumlah','$stok_lama','$stok',NOW())");
+}
     header("Location: edit_obat.php");
     exit;
 }
