@@ -57,6 +57,12 @@ if (isset($_POST['login'])) {
         <form method="POST">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required> <br>
+      
+
+<a href="lupa_password.php" style="font-size:12px; color:blue; text-decoration:none;">
+    Lupa password?
+</a>
+<br>
             <button name="login">Login</button>
         </form>
     </div>

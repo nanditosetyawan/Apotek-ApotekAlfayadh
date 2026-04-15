@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2026 at 01:05 AM
+-- Generation Time: Apr 15, 2026 at 11:11 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -63,7 +63,9 @@ INSERT INTO `detail_transaksi` (`id_detail`, `id_transaksi`, `id_obat`, `jumlah`
 (6, 4, 16, 1, 9500.00, 9500.00),
 (7, 5, 44, 16, 14000.00, 224000.00),
 (8, 6, 44, 12, 14000.00, 168000.00),
-(9, 7, 44, 4, 14000.00, 56000.00);
+(9, 7, 44, 4, 14000.00, 56000.00),
+(10, 8, 18, 10, 13000.00, 130000.00),
+(11, 8, 25, 1, 9000.00, 9000.00);
 
 -- --------------------------------------------------------
 
@@ -87,7 +89,8 @@ CREATE TABLE `laporan_obat_masuk` (
 --
 
 INSERT INTO `laporan_obat_masuk` (`id_laporan`, `bulan`, `tahun`, `total_item`, `total_masuk`, `file_path`, `dibuat_pada`, `versi`) VALUES
-(2, 4, 2026, 15, -346, 'laporan/riwayat_obat_2026_04_v1_1775503944.txt', '2026-04-07 02:32:24', 1);
+(15, 4, 2026, 2, 19, 'laporan/riwayat_obat_2026_04_v1_1776283411.txt', '2026-04-16 03:03:31', 1),
+(16, 4, 2026, 3, 919, 'laporan/riwayat_obat_2026_04_v2_1776283445.txt', '2026-04-16 03:04:05', 2);
 
 -- --------------------------------------------------------
 
@@ -98,7 +101,7 @@ INSERT INTO `laporan_obat_masuk` (`id_laporan`, `bulan`, `tahun`, `total_item`, 
 CREATE TABLE `log_stok` (
   `id_log` int(11) NOT NULL,
   `id_obat` int(11) NOT NULL,
-  `jenis` enum('tambah','edit') NOT NULL,
+  `jenis` enum('tambah','kurang') NOT NULL,
   `jumlah` int(11) NOT NULL,
   `stok_sebelum` int(11) NOT NULL,
   `stok_sesudah` int(11) NOT NULL,
@@ -110,21 +113,9 @@ CREATE TABLE `log_stok` (
 --
 
 INSERT INTO `log_stok` (`id_log`, `id_obat`, `jenis`, `jumlah`, `stok_sebelum`, `stok_sesudah`, `tanggal`) VALUES
-(1, 5, 'tambah', -149, 150, 1, '2026-04-07 01:57:15'),
-(2, 48, 'tambah', -125, 125, 0, '2026-04-07 01:57:46'),
-(3, 48, 'tambah', -125, 125, 0, '2026-04-07 01:58:10'),
-(4, 48, 'tambah', -125, 125, 0, '2026-04-07 01:58:16'),
-(5, 48, 'tambah', -125, 125, 0, '2026-04-07 02:00:52'),
-(6, 52, 'tambah', 100, 0, 100, '2026-04-07 02:02:19'),
-(7, 25, '', 2, 4, 2, '2026-04-07 02:12:04'),
-(8, 25, 'tambah', 3, 2, 5, '2026-04-07 02:12:59'),
-(9, 25, '', 4, 5, 1, '2026-04-07 02:17:14'),
-(10, 25, 'tambah', 5, 1, 6, '2026-04-07 02:17:39'),
-(11, 41, '', 40, 40, 0, '2026-04-07 02:18:01'),
-(12, 25, 'tambah', 54, 6, 60, '2026-04-07 02:23:46'),
-(13, 25, '', 54, 60, 6, '2026-04-07 02:24:11'),
-(14, 41, '', 40, 40, 0, '2026-04-07 02:24:44'),
-(15, 5, '', 1, 1, 0, '2026-04-07 02:28:58');
+(18, 25, 'tambah', 14, 6, 20, '2026-04-16 02:36:13'),
+(20, 53, 'tambah', 5, 0, 5, '2026-04-16 02:37:17'),
+(21, 18, 'tambah', 900, 100, 1000, '2026-04-16 03:03:54');
 
 -- --------------------------------------------------------
 
@@ -163,13 +154,13 @@ INSERT INTO `obat` (`id_obat`, `nama`, `produsen`, `stok`, `harga`, `gambar`, `d
 (15, 'Dexamethasone 0.5mg', 'Ifars Pharmaceutical', 65, 7000, 'img/obat/default.png', 'Anti inflamasi dan alergi.'),
 (16, 'Ambroxol 30mg', 'Sanbe Farma', 137, 9500, 'img/obat/ambroxol.png', 'Mengencerkan dahak.'),
 (17, 'Metformin 500mg', 'Kimia Farma', 180, 12000, 'img/obat/default.png', 'Mengontrol gula darah diabetes.'),
-(18, 'Amlodipine 10mg', 'Kalbe Farma', 100, 13000, 'img/obat/amlodipine.png', 'Menurunkan tekanan darah.'),
+(18, 'Amlodipine 10mg', 'Kalbe Farma', 990, 13000, 'img/obat/amlodipine.png', 'Menurunkan tekanan darah.'),
 (19, 'Domperidone 10mg', 'Dexa Medica', 85, 11000, 'img/obat/default.png', 'Mengatasi mual dan muntah.'),
 (20, 'Salbutamol 2mg', 'Indofarma', 75, 10000, 'img/obat/default.png', 'Melegakan saluran pernapasan.'),
 (21, 'Clindamycin 300mg', 'Sanbe Farma', 80, 21000, 'img/obat/default.png', 'Antibiotik untuk infeksi serius.'),
 (22, 'Erythromycin 500mg', 'Kimia Farma', 95, 18000, 'img/obat/default.png', 'Antibiotik infeksi bakteri.'),
 (23, 'Ketoconazole 200mg', 'Hexpharm Jaya', 60, 16000, 'img/obat/default.png', 'Antijamur untuk infeksi kulit.'),
-(25, 'Allopurinol 100mg', 'Indofarma', 6, 9000, 'img/obat/allopurinol.png', 'Menurunkan kadar asam urat dan sakit kaki.'),
+(25, 'Allopurinol 100mg', 'Indofarma', 19, 9000, 'img/obat/allopurinol.png', 'Menurunkan kadar asam urat dan sakit kaki.'),
 (26, 'Simvastatin 20mg', 'Kalbe Farma', 150, 14000, 'img/obat/default.png', NULL),
 (27, 'Atorvastatin 20mg', 'Dexa Medica', 110, 22000, 'img/obat/default.png', NULL),
 (28, 'Captopril 25mg', 'Kimia Farma', 200, 7000, 'img/obat/default.png', NULL),
@@ -188,14 +179,14 @@ INSERT INTO `obat` (`id_obat`, `nama`, `produsen`, `stok`, `harga`, `gambar`, `d
 (42, 'Tramadol 50mg', 'Dexa Medica', 55, 18000, 'img/obat/default.png', NULL),
 (43, 'Diazepam 5mg', 'Interbat', 45, 12000, 'img/obat/default.png', NULL),
 (44, 'Alprazolam 0.5mg', 'Ifars Pharmaceutical', 3, 14000, 'img/obat/alprazolam.png', NULL),
-(45, 'Chloramphenicol 250mg', 'Kimia Farma', 90, 10000, 'img/obat/default.png', NULL),
 (46, 'Nifedipine 10mg', 'Indofarma', 115, 9500, 'img/obat/default.png', NULL),
 (47, 'Bisoprolol 5mg', 'Kalbe Farma', 100, 16000, 'img/obat/default.png', NULL),
 (48, 'Hydrochlorothiazide 25mg', 'Sanbe Farma', 125, 8000, 'img/obat/default.png', NULL),
 (49, 'Carbamazepine 200mg', 'Novell Pharmaceutical', 60, 17000, 'img/obat/default.png', NULL),
 (50, 'Levofloxacin 500mg', 'Dexa Medica', 70, 28000, 'img/obat/default.png', NULL),
 (51, 'Baygon 200ml', '', 6, 20000, 'img/obat/1775500631_Screenshot_2026-04-07-01-36-17-834_com.android.chrome-edit.jpg', 'Obat Nyamuk Super'),
-(52, 'Nasi Padang', '', 100, 25000, 'img/obat/1775502139_Screenshot_2026-04-07-01-59-19-506_com.android.chrome.png', 'Sarapan Instan');
+(52, 'Nasi Padang', '', 100, 25000, 'img/obat/1775502139_Screenshot_2026-04-07-01-59-19-506_com.android.chrome.png', 'Sarapan Instan'),
+(53, 'Bodrex', '', 5, 5000, 'img/obat/default.png', 'obat joss');
 
 -- --------------------------------------------------------
 
@@ -216,9 +207,8 @@ CREATE TABLE `riwayat_transaksi_kasir` (
 --
 
 INSERT INTO `riwayat_transaksi_kasir` (`id`, `nama_dokumen`, `tanggal`, `jam`, `file_path`) VALUES
-(2, 'Transaksi Bulan November', '2025-11-06', '2025-11-06 01:07:02', NULL),
-(3, 'Transaksi Bulan Oktober', '2025-10-10', '2025-10-09 18:07:53', NULL),
-(20, 'Laporan Bulan MARET', '2026-03-25', '2026-03-25 10:53:24', 'laporan/laporan_2026_maret_1774436004.txt');
+(20, 'Laporan Bulan MARET', '2026-03-25', '2026-03-25 10:53:24', 'laporan/laporan_2026_maret_1774436004.txt'),
+(22, 'Laporan Bulan APRIL', '2026-04-16', '2026-04-15 20:25:15', 'laporan/laporan_2026_april_1776284715.txt');
 
 -- --------------------------------------------------------
 
@@ -244,7 +234,8 @@ INSERT INTO `transaksi` (`id_transaksi`, `tanggal`, `id_user`, `total`) VALUES
 (4, '2026-03-25 17:28:07', 1, 9500.00),
 (5, '2026-03-25 17:34:20', 1, 224000.00),
 (6, '2026-03-25 17:36:16', 1, 168000.00),
-(7, '2026-03-25 17:43:43', 1, 56000.00);
+(7, '2026-03-25 17:43:43', 1, 56000.00),
+(8, '2026-04-16 03:10:02', 1, 139000.00);
 
 -- --------------------------------------------------------
 
@@ -256,17 +247,18 @@ CREATE TABLE `users` (
   `id_user` int(5) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `jabatan` enum('managergudang','managertoko','kasir') NOT NULL
+  `jabatan` enum('managergudang','managertoko','kasir') NOT NULL,
+  `kode_reset` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id_user`, `username`, `password`, `jabatan`) VALUES
-(1, 'Angga', ' ', 'kasir'),
-(2, 'Joko', ' ', 'managergudang'),
-(3, 'Bowo', ' ', 'managertoko');
+INSERT INTO `users` (`id_user`, `username`, `password`, `jabatan`, `kode_reset`) VALUES
+(1, 'Angga', 'Kerja', 'kasir', 'Uangjaya'),
+(2, 'Joko', 'SosisManis', 'managergudang', 'Laris'),
+(3, 'Bowo', 'AyamGoreng', 'managertoko', 'makanHemat');
 
 --
 -- Indexes for dumped tables
@@ -295,7 +287,7 @@ ALTER TABLE `laporan_obat_masuk`
 --
 ALTER TABLE `log_stok`
   ADD PRIMARY KEY (`id_log`),
-  ADD KEY `id_obat` (`id_obat`);
+  ADD KEY `fk_log_obat` (`id_obat`);
 
 --
 -- Indexes for table `obat`
@@ -335,37 +327,37 @@ ALTER TABLE `barang_masuk`
 -- AUTO_INCREMENT for table `detail_transaksi`
 --
 ALTER TABLE `detail_transaksi`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `laporan_obat_masuk`
 --
 ALTER TABLE `laporan_obat_masuk`
-  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `log_stok`
 --
 ALTER TABLE `log_stok`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `id_obat` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id_obat` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `riwayat_transaksi_kasir`
 --
 ALTER TABLE `riwayat_transaksi_kasir`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -381,7 +373,7 @@ ALTER TABLE `users`
 -- Constraints for table `log_stok`
 --
 ALTER TABLE `log_stok`
-  ADD CONSTRAINT `log_stok_ibfk_1` FOREIGN KEY (`id_obat`) REFERENCES `obat` (`id_obat`);
+  ADD CONSTRAINT `fk_log_obat` FOREIGN KEY (`id_obat`) REFERENCES `obat` (`id_obat`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
