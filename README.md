@@ -27,7 +27,7 @@ https://apotekalfayadh.infinityfreeapp.com
 
 - Kasir  
   Username: `Angga`  
-  Password: `Ayam123`  
+  Password: `ikan`  
   Kode Reset: `Uangjaya`
 
 - Manager Gudang  
