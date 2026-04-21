@@ -39,3 +39,6 @@ https://apotekalfayadh.infinityfreeapp.com
   Username: `Bowo`  
   Password: `AyamGoreng`  
   Kode Reset: `makanHemat`
+
+  CATATAN: Harap Setiap user mencatat kode reset password ditempat aman seperti media offline kkertas, buku, dan lainnya untuk membantu reset password disaat yang diperlukan!
+  APABILA KEHILANGAN KODE RESET, HARAP SEGERA MENGHUBUNGI OWNER APOTEK UNTUK TINDAKAN LEBIH LANJUT
